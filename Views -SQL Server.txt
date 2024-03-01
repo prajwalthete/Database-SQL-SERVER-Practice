@@ -1,0 +1,116 @@
+
+						Views In SQL Server - Insert Update Delete With Views
+
+--Views In SQL Server - Insert Update Delete  -- USE SAMPLEDB DATABASE;
+
+/*
+→ A VIEW IN SQL IS JUST A SAVED SQL QUERY.
+→ A VIEW CAN ALSO BE CONSIDERED AS A VIRTUAL TABLE
+
+> INSERT WITH VIEWS
+> UPDATE WITH VIEWS
+• DELETE WITH VIEWS
+→ VIEWS CAN BE USED AS A MECHANISM TO IMPLEMENT ROW AND
+  COLUMN LEVEL SECURITY.
+*/
+
+---- Create Department table
+--CREATE TABLE Department (
+--    DeptID INT PRIMARY KEY,
+--    DeptName VARCHAR(100) NOT NULL
+--);
+
+-- Create Employee table
+--CREATE TABLE Employee (
+--    EmpID INT PRIMARY KEY,
+--    EmpName VARCHAR(100) NOT NULL,
+--    DID INT,
+--    FOREIGN KEY (DID) REFERENCES Department(DeptID)
+--);
+
+-- Insert data into Department table
+--INSERT INTO Department (DeptID, DeptName)
+--VALUES
+--(101, 'HR'),
+--(102, 'Finance'),
+--(103, 'IT');
+
+-- Insert data into Employee table
+--INSERT INTO Employee (EmpID, EmpName, DID)
+--VALUES
+--(1, 'John Doe', 101),
+--(2, 'Jane Smith', 102),
+--(3, 'Michael Johnson', 103),
+--(4, 'Emily Brown', 101),
+--(5, 'David Wilson', 102);
+
+--SELECT * FROM EMPLOYEE;
+--SELECT * FROM DEPARTMENT;
+
+--DROP TABLE EMPLOYEE;
+--DROP TABLE DEPARTMENT;
+
+
+--CREATE A VIEW 
+--CREATE VIEW VW_ForEmployee AS SELECT * FROM EMPLOYEE AS A
+--INNER JOIN DEPARTMENT AS B
+--ON A.DID = B.DeptId;
+
+
+--DISPLAY THE VIEW 
+--SELECT * FROM VW_ForEmployee;
+
+
+--SINCE ABOVE COMMAND SHOWING DOUBLE ID FROM BOTH TABLE WE CAN MODIFY LIKE THIS 
+--CREATE VIEW VW_ForEmployee1 AS SELECT A.*,B.DeptName FROM EMPLOYEE AS A
+--INNER JOIN DEPARTMENT AS B
+--ON A.DID = B.DeptId;
+
+--DISPLAY THE VIEW 
+--SELECT * FROM VW_ForEmployee1;
+
+--CREATE VIEW VW_ForEmployee2 AS SELECT A.EmpId,A.EmpName,B.DeptName FROM EMPLOYEE AS A
+--INNER JOIN DEPARTMENT AS B
+--ON A.DID = B.DeptId;
+
+--ROW LEVEL SECURITY CAN BE APPLIED LIKE THIS 
+--CREATE VIEW VW_ForEmployee3 AS SELECT A.*,B.Deptname FROM EMPLOYEE AS A
+--INNER JOIN DEPARTMENT AS B
+--ON A.DID = B.DeptId
+--WHERE DeptName = 'HR'
+
+--DISPLAY THE VIEW 
+--SELECT * FROM VW_ForEmployee3;
+
+
+--we can use inbuild sp to get command of that view 
+--sp_helptext VW_ForEmployee3;
+
+--WE CAN ALTER THE VIEW BASED ON REQUIREMENT USING ALTER 
+--ALTER VIEW VW_ForEmployee3 AS SELECT A.*,B.Deptname FROM EMPLOYEE AS A
+--INNER JOIN DEPARTMENT AS B
+--ON A.DID = B.DeptId
+--WHERE DeptName = 'HR' OR DeptName = 'IT';
+
+--SELECT * FROM VW_ForEmployee3;
+
+
+--WE CAN DROP VIEW USING DROP COMMAND 
+--DROP VIEW  VW_ForEmployee3;
+
+
+--========================================================================================================================================
+--NOTE -- WHEN YOU INSERT,update ,delete SOMETHING IN CREATED VIEW IT WILL ALSO AFFECT THE ORIGINAL TABLE 
+
+--CREATE VIEW VW_ForMyEmployee AS SELECT * FROM Employee;
+
+--SELECT * FROM Employee;
+
+--select * from VW_ForMyEmployee;
+
+--insert into VW_ForMyEmployee values (6,'tom Cruse',103);
+--UPDATE VW_ForMyEmployee  SET EmpName = 'Jack Sparrow' WHERE EmpId =6;
+
+--DELETE FROM VW_ForMyEmployee WHERE EmpId = 6;
+
+-- you can create view of single table

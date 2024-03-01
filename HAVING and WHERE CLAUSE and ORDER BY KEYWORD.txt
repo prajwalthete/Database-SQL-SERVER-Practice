@@ -1,0 +1,58 @@
+
+=========
+										HAVING and WHERE CLAUSE 
+
+--SELECT City ,SUM(Salary)AS "TOTAL SALARY AS PER CITY" FROM EmployeeData GROUP BY City;
+
+--SELECT City ,SUM(Salary)AS "TOTAL SALARY AS PER CITY" FROM EmployeeData GROUP BY City HAVING City IN ('Houston');
+
+--U CAN USE WHERE CLAUSE BEFORE GROUP BY COMMAND LIKE THIS
+
+--SELECT City ,SUM(Salary)AS "TOTAL SALARY AS PER CITY" FROM EmployeeData WHERE City IN ('Houston') GROUP BY City;
+
+--SELECT City ,SUM(Salary)AS "TOTAL SALARY AS PER CITY" FROM EmployeeData  GROUP BY City HAVING SUM(Salary) >=50000;
+
+
+--we can use WHERE and HAVING together in single query;
+--SELECT City ,SUM(Salary)AS "TOTAL SALARY AS PER CITY" FROM EmployeeData  where City in('Chicago','Houston') GROUP BY City HAVING SUM(Salary) >=50000;
+
+--CREATE TABLE ProductSale (
+--    ProductID INT PRIMARY KEY,
+--    ProductName VARCHAR(100) NOT NULL,
+--    SaleAmount DECIMAL(10, 2) NOT NULL
+--);
+
+--INSERT INTO ProductSale (ProductID, ProductName, SaleAmount)
+--VALUES
+--(1, 'Product A', 100.00),
+--(2, 'Product B', 150.50),
+--(3, 'Product C', 200.75),
+--(4, 'Product D', 75.25),
+--(5, 'Product E', 300.00);
+
+--SELECT ProductName, SUM(SaleAmount) AS 'Total Sale' 
+--FROM ProductSale
+--WHERE ProductName NOT IN ('Product A')
+--GROUP BY ProductName 
+--HAVING SUM(SaleAmount) > 100;
+
+
+----------------------------==========================ORDER BY KEYWORD---==========================================================
+/*
+The ORDER BY keyword is used to sort the result-set in ascending or descending order
+The ORDER BY keyword sorts the records in ascending order by default.
+To sort the records in descending order, use the DESC keyword.
+*/
+--SELECT * FROM EmployeeData;
+
+--SELECT * FROM EmployeeData
+--ORDER BY name;   --BY DEFULT ASC AND U CAN ASLO MENTION ASC
+
+
+--SELECT * FROM EmployeeData
+--ORDER BY name DESC;
+
+--we can select multiple column for sorting as per our requirement 
+
+--SELECT * FROM EmployeeData
+--ORDER BY name DESC ,city DESC;

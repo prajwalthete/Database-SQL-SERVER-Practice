@@ -1,0 +1,42 @@
+
+---===================================================Indexes In SQL Server -=============================================================================
+
+--CREATE TABLE FullTimeEmployees (
+--    ID INT PRIMARY KEY,
+--    NAME VARCHAR(50),
+--    GENDER VARCHAR(10),
+--    DESIGNATION VARCHAR(50),
+--    SALARY INT
+--);
+
+--INSERT INTO FullTimeEmployees (ID, NAME, GENDER, DESIGNATION, SALARY)
+--VALUES
+--(1, 'Rahul', 'Male', 'Manager', 28000),
+--(2, 'Priya', 'Female', 'Assistant', 22000),
+--(3, 'Amit', 'Male', 'Accountant', 32000),
+--(4, 'Neha', 'Female', 'Operator', 18000),
+--(5, 'Sanjay', 'Male', 'Director', 40000),
+--(6, 'Pooja', 'Female', 'Manager', 25000),
+--(7, 'Akash', 'Male', 'Assistant', 20000),
+--(8, 'Sonia', 'Female', 'Accountant', 35000),
+--(9, 'Raj', 'Male', 'Operator', 15000),
+--(10, 'Anjali', 'Female', 'Director', 45000);
+
+--SELECT * FROM  FullTimeEmployees ;
+
+--CREATE INDEX ON ABOVE TABE  --BY DEFAULT IT WILL CREATE NON-CULSTERED INDEX
+--CREATE INDEX IX_FTE_Salary1
+--ON FullTimeEmployees (Salary ASC);
+
+
+
+--SELECT * FROM FullTimeEmployees WHERE Salary=22000;
+
+
+---YOU CAN DROP INDEX USING 
+ --DROP INDEX IX_FTE_Salary1 ON FullTimeEmployees;
+
+
+ ---==================================================================CULSTERED INDEX---========================================
+-- CREATE CLUSTERED INDEX IX_FTE_Salary
+--ON FullTimeEmployees (Salary ASC);

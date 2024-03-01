@@ -1,0 +1,139 @@
+
+				 SQL JOINS
+
+--JOINS - JOINS ARE USED TO COMBINE TWO OR MORE TABLE IN RESULTSET 
+
+--WE HAVE TWO TABLE A TABLE IS HAVING 5 COULMN AND B TABLE IS HAVING 4 COLUMN
+
+--TYPES OF JOINS 
+			--1.INNER JOINS
+			--2.LEFT JOINS
+			--3.RIGHT JOINS
+			--4.FULL OUTER JOIN
+
+-----------------------------------------1.INNER JOINS---------------------------------------------------------------
+
+--CREATE TABLE Employee_Tbl (
+--						EmpId INT UNIQUE NOT NULL,
+--						EmpName VARCHAR(50)NOT NULL,
+--						Email VARCHAR(50) NOT NULL,
+--						Designation VARCHAR(50) NOT NULL
+--						);
+
+--SELECT * FROM Employee_Tbl;
+
+
+--INSERT INTO Employee_Tbl VALUES( 11,'Virat','virat@gmail.com','Manager')
+--INSERT INTO Employee_Tbl VALUES( 12,'Schin','Schin@gmail.com','Assitanat Manager')
+--INSERT INTO Employee_Tbl VALUES( 13,'Dhoni','Dhoni@gmail.com','I-T Incharge')
+--INSERT INTO Employee_Tbl VALUES( 14,'Rohit','Rohit@gmail.com','Computer Operator')
+--INSERT INTO Employee_Tbl VALUES( 15,'Hardik','Hardik@gmail.com','Employee')
+                                                       
+
+
+--CREATE TABLE Department (
+--							Dept_Id INT UNIQUE NOT NULL,
+--							Dept_Name VARCHAR(50) NOT NULL,
+--							Dept_Salary VARCHAR(30) NOT NULL,
+--							EmpId INT UNIQUE NOT NULL
+--						);
+
+
+--SELECT * FROM Employee_Tbl;
+--SELECT * FROM Department;
+
+--INSERT INTO Department VALUES (111,'Administration','50000',13)
+--INSERT INTO Department VALUES (222,'Accounts','60000',12)
+--INSERT INTO Department VALUES (333,'IT','40000',11)
+--INSERT INTO Department VALUES (444,'Academic','45000',14)
+--INSERT INTO Department VALUES (555,'Finance','55000',15)
+
+------------------------------------------INNER JOIN-------------------------------------------------------------------
+
+--SELECT * FROM Employee_Tbl as E 
+--INNER JOIN Department as D
+--ON E.EmpId = D.EmpId;
+
+
+--SELECT EmpName,Designation,Dept_Name, Dept_Salary FROM Employee_Tbl as E 
+--INNER JOIN Department as D 
+--ON E.EmpId = D.EmpId;
+
+-----OR BETTER WAY
+
+--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+--INNER JOIN Department as D 
+--ON E.EmpId = D.EmpId;
+
+--inner joins will return the matching record from both the table based on specified condition 
+--example when you have 2 tables employee and department but inside department you have mutiple department and u want 
+---to find only such department where your employee data match 
+
+
+
+------------------------------------------2.LEFT JOINS------------------------------------------------------------------
+
+--INSERT INTO Employee_Tbl VALUES( 16,'shivam','shivam@gmail.com','asssitant Manager')
+
+--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+--LEFT JOIN Department as D 
+--ON E.EmpId = D.EmpId; 
+
+--------------------------------------3.Right JOINS-------------------------------------------------------------------
+
+--INSERT INTO Department VALUES (777,'Sport','35000',17)
+
+	--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+	--RIGHT JOIN Department as D 
+	--ON E.EmpId = D.EmpId; 
+
+-----------------------------------------------3.Full-OUTER-JOINS--------------------------------------------------
+
+--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+--FULL OUTER JOIN Department as D 
+--ON E.EmpId = D.EmpId; 
+ 
+ -----------------------------------------------------CROSS JOIN---------------------------------------------------
+ --SINGLE ROW WILL GET COMPARED WITH 
+ --SELECT * FROM Employee_Tbl;
+ -- SELECT * FROM Department;
+
+
+ ----INNER JOINS V CROSS JOINS
+--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+--INNER JOIN Department as D ON  E.EmpId = D.EmpId;
+     
+------------------------------CROSS JOIN--------------------------------------------------------------------------
+/*
+CROSS JOIN
+CROSS JOIN in SQL Server combines all of the possibilities of two or more tables and returns a result that
+includes every row from all contributing tables. It's also known as CARTESIAN JOIN because it produces the
+Cartesian product of all linked tables. The Cartesian product represents all rows present in the first table
+multiplied by all rows present in the second table.
+*/	 
+--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+--CROSS JOIN Department as D WHERE  E.EmpId = D.EmpId;
+
+	 
+--SELECT E.EmpName,E.Designation,D.Dept_Name, D.Dept_Salary FROM Employee_Tbl as E 
+--CROSS JOIN Department as D;
+       
+	 
+---------------------------------------SELF JOIN-------------------------------------------------------------------------- 
+				
+/*
+A table is joined to itself using the SELF JOIN. It means that each table row is combined with itself and 
+with every other table row. The SELF JOIN can be thought of as a JOIN of two copies of the same tables.
+We can do this with the help of table name aliases to assign a specific name to each table's instance. The 
+table aliases enable us to use the table's temporary name that we are going to use in the query. It's a
+useful way to extract hierarchical data and comparing rows inside a single table.
+*/	
+
+--SELECT * FROM Employee_Tbl E1,
+
+--SELECT * FROM Employee_Tbl E1,
+--				Employee_Tbl E2
+--  WHERE E1.EmpId = E2.EmpId;
+	
+
+---=============================================================================================================-----------

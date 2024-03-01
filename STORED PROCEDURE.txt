@@ -1,0 +1,136 @@
+--============================================================STORED PROCEDURE --=========================================================================
+/*
+Stored Procedure Overview:
+A stored procedure is a set of SQL statements with an assigned name, stored in a database management system. 
+It can be reused and shared among multiple programs.
+
+Types of Stored Procedures:
+1.System Stored Procedures
+2.User-Defined Stored Procedures
+
+
+Tasks to Perform:
+Stored Procedure Example
+Stored Procedure with Single Parameter
+Stored Procedure with Multiple Parameters, Changing the Parameters Order
+Alter Stored Procedure
+Viewing the Text of the Stored Procedure Using sp_helptext
+Drop Stored Procedure
+Using WITH ENCRYPTION in Stored Procedures
+
+*/
+
+--1.--Stored Procedure Example
+
+SELECT * FROM Employee;
+
+--CREATE SP ON ABOVE TABLE 
+
+--CREATE PROCEDURE spEmployee
+--as 
+--begin
+--SELECT EmpId,EmpName FROM Employee;
+--end;
+
+
+--TO CALL THE SP 
+--spEmployee;
+
+--OR
+--EXEC spEmployee;
+
+
+--2.---Stored Procedure with Single Parameter
+
+--CREATE PROCEDURE SpGetEmployeeById
+--@EmpID int 
+--as 
+--begin
+-- SELECT * FROM Employee WHERE EmpID= @EmpID;
+--end
+
+--SpGetEmployeeById 2;
+
+
+--3.-Stored Procedure with Multiple Parameters, Changing the Parameters Order
+
+--CREATE PROCEDURE SpGetEmpByIdAndName
+--@EmpID INT,
+--@EmpName Varchar(50)
+--as 
+--begin 
+--		SELECT * FROM Employee WHERE EmpID = @EmpID AND EmpName = @EmpName;
+--end
+
+--call the above procedure 
+--SpGetEmpByIdAndName 2,'jane Smith';
+
+--WE CAN ALTER THE PROCEDURE 
+
+--ALTER PROCEDURE SpGetEmpByIdAndName
+--@EmpID INT,
+--@EmpName Varchar(50)
+--as 
+--begin 
+--		SELECT EmpName FROM Employee WHERE EmpID = @EmpID AND EmpName = @EmpName;
+--end
+
+--call the above procedure 
+--SpGetEmpByIdAndName 2,'jane Smith';
+
+
+--we can get the command of procedure using 
+--sp_helptext  SpGetEmpByIdAndName;
+
+
+---WE CAN SET THE ENCRYPTION ON SP SO THAT NO CAN SE THE COMMMAND OF SP USING sp_helptext
+
+--CREATE PROCEDURE SpGetEmpByIdAndName1
+--@EmpID INT,
+--@EmpName Varchar(50)
+--WITH ENCRYPTION
+--as 
+--begin 
+--		SELECT * FROM Employee WHERE EmpID = @EmpID AND EmpName = @EmpName;
+--end
+
+--call the above procedure 
+--SpGetEmpByIdAndName1 2,'jane Smith';
+
+--NOW WE CANT SEE THE COMMAND OF SP BCZ OF THE ENCRYPTION
+--sp_helptext  SpGetEmpByIdAndName1;
+
+
+-- WE CAN REMOVE ENCRYPTION USING ALTER 
+
+
+--ALTER PROCEDURE SpGetEmpByIdAndName1
+--@EmpID INT,
+--@EmpName Varchar(50)
+--as 
+--begin 
+--		SELECT * FROM Employee WHERE EmpID = @EmpID AND EmpName = @EmpName;
+--end
+
+--call the above procedure 
+--SpGetEmpByIdAndName1 2,'jane Smith';
+
+--sp_helptext  SpGetEmpByIdAndName;
+
+
+-----SP WITH OUTPUT PARAMETER ----------------------------====================================
+--SELECT * FROM Employee;
+
+--CREATE PROC sp_GetEmployeeByDID
+--@DID INT,
+--@EmployeeCount int output
+--as 
+--				begin 
+--					SELECT @EmployeeCount = COUNT(EmpID) FROM Employee
+--					WHERE  DID=@DID
+--				END
+
+--Declare @TotalEmployee int 
+--execute sp_GetEmployeeByDID 101,@TotalEmployee output
+-- select @TotalEmployee;
+

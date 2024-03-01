@@ -1,0 +1,55 @@
+
+--================================================UNION AND UNION ALL -===================================================================
+-- Create Hockey table
+--CREATE TABLE Hockey (
+--    PlayerID INT PRIMARY KEY,
+--    PlayerName VARCHAR(100) NOT NULL,
+--    TeamName VARCHAR(100),
+--    Position VARCHAR(50),
+--    JerseyNumber INT
+--);
+
+-- Insert data into Hockey table
+--INSERT INTO Hockey (PlayerID, PlayerName, TeamName, Position, JerseyNumber)
+--VALUES
+--(1, 'John Doe', 'Maple Leafs', 'Forward', 19),
+--(2, 'Jane Smith', 'Canadiens', 'Defense', 23),
+--(3, 'Michael Johnson', 'Blackhawks', 'Goalie', 30);
+
+-- Create Football table
+--CREATE TABLE Football (
+--    PlayerID INT PRIMARY KEY,
+--    PlayerName VARCHAR(100) NOT NULL,
+--    TeamName VARCHAR(100),
+--    Position VARCHAR(50),
+--    JerseyNumber INT
+--);
+
+-- Insert data into Football table
+--INSERT INTO Football (PlayerID, PlayerName, TeamName, Position, JerseyNumber)
+--VALUES
+--(4, 'Alice Brown', 'Patriots', 'Quarterback', 12),
+--(5, 'David Wilson', 'Packers', 'Wide Receiver', 88),
+--(6, 'Sophia Lee', 'Seahawks', 'Defensive Back', 21);
+
+--SELECT * FROM Hockey
+--UNION
+--SELECT * FROM Football;
+
+--SELECT * FROM Hockey
+--UNION ALL
+--SELECT * FROM Football;
+
+
+----====================================INTERSECT AND EXCEPT OPERATOR==============================================================
+--INTERSECT WILL DISPLAY ONLY DATA WITH IS COMMON FROM BOTH TABLE
+
+--SELECT * FROM Hockey
+--INTERSECT
+--SELECT * FROM Football;
+--=================================================================================
+
+--EXCEPT OPERATOR WILL SHOW  EXTRA DATA FROM LEFT TABLE 
+--SELECT * FROM Hockey
+--EXCEPT
+--SELECT * FROM Football;

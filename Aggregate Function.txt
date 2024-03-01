@@ -1,0 +1,210 @@
+
+---=============================================================================================================-----------
+
+---------------------------------Aggregate Function------------------------------------------------------------
+--	CREATE TABLE ProductQty (
+--    Id INT PRIMARY KEY,
+--    Region VARCHAR(50),
+--    Product VARCHAR(50),
+--    Year INT,
+--    Quantity INT,
+--    Price INT
+--);
+
+--INSERT INTO ProductQty (Id, Region, Product, Year, Quantity, Price)
+--VALUES
+--(2, 'East', 'Computer', 2020, 130, 50000),
+--(3, 'South', 'Computer', 2020, 450, 35000),
+--(4, 'North', 'Computer', 2020, 250, 40000),
+--(5, 'East', 'Hard Disk', 2020, 190, 5500),
+--(6, 'West', 'Computer', 2021, 250, 45000),
+--(7, 'South', 'Hard Disk', 2021, 550, 4400),
+--(8, 'West', 'Hard Disk', 2021, 650, 7500),
+--(9, 'East', 'Pen Drive', 2021, 120, 800),
+--(10, 'North', 'Mouse', 2019, 160, 1500),
+--(11, 'South', 'Pen Drive', 2019, 270, 750),
+--(12, 'East', 'Mouse', 2019, 2000, 1200),
+--(13, 'West', 'Pen Drive', 2019, 190, 650);
+
+--DROP TABLE  ProductQty;
+
+--SELECT * FROM ProductQty;
+
+--MIN() Function Example
+--SELECT MIN(Quantity) AS "Minimum Quantity" FROM ProductQty;  
+
+-- WHERE clause with the MIN() function. 
+
+--SELECT Product, Quantity, Price  
+--FROM ProductQty  
+--WHERE Quantity = (  
+--SELECT MIN(Quantity) AS "Minimum Quantity"   
+--FROM ProductQty); 
+
+/*
+Example3: This example uses the GROUP BY clause with the MIN() function. This clause collects data from
+multiple rows and groups them based on single or multiple columns.
+*/
+
+--SELECT Product,MIN(Quantity) AS "Minimum Quantity"
+--FROM ProductQty  
+--GROUP BY Product;
+
+/*
+Example4: This example uses the HAVING clause with the MIN() function. This clause must be used with the
+GROUP BY clause to filter the grouped records from the table. The below statement will display the product 
+name with a minimum quantity greater than 150.
+*/
+
+--SELECT Product, MIN(Quantity) AS "Minimum Quantity"   
+--FROM ProductQty  
+--GROUP BY Product  
+--HAVING MIN(Quantity)>150;  
+
+
+/*
+Example5: This example uses the DISTINCT clause with the MIN() function. This clause is used to remove the
+duplicate rows from the column. The below statement returns the minimum sold product quantity by removing 
+the duplicates data from the "Quantity" column of a "ProductQty" table.
+*/
+
+--SELECT Product, MIN( DISTINCT Quantity) AS "Minimum Quantity"   
+--FROM ProductQty  
+--GROUP BY Product;
+
+--SELECT * FROM ProductQty;
+/*
+Example6: This example uses the MIN() function with two columns to get the lowest resultant output:
+*/
+
+--SELECT Product, MIN(Quantity * Price) AS "Lowest Value"   
+--FROM ProductQty  
+--GROUP BY Product;		
+
+
+
+--=================================================== MAX()====================================================================
+/*
+The MAX() function in SQL Server is a type of aggregate function. It is used to get the maximum or largest
+value in a group of values of a specified column or expression. It is the most commonly used built-in function
+in the SQL Server. This function accepts a single parameter that can be a column or valid expression and 
+returns a single result to summarize the input data set. It can also work with the WHERE, GROUP BY, ORDER BY
+, and HAVING clauses to get the filtered result.
+*/
+
+
+/*
+Example1: This example uses the MAX() function to get the maximum quantity of the sold products in the 
+ProductQty table:
+*/
+
+--SELECT MAX(Quantity) AS "Maximum Quantity" FROM ProductQty; 
+
+
+/*
+Example2: This example uses the WHERE clause with the MAX() function. This clause is used to filter the 
+records from the table. 
+*/
+
+--SELECT Product, Quantity, Price  
+--FROM ProductQty  
+--WHERE Quantity = (  
+--SELECT MAX(Quantity) AS "Maximum Quantity"   
+--FROM ProductQty);  
+
+/*
+Example3: This example uses the GROUP BY clause with the MAX() function. The GROUP BY clause collects data
+from multiple rows and groups them based on a specified column. 
+*/
+
+--SELECT Product,MAX(Quantity) AS "Maximum Quantity"
+--FROM  ProductQty
+--GROUP BY Product
+--ORDER BY Product;
+
+/*
+Example4: This example uses the HAVING clause with the MAX() function. We always use the HAVING clause with
+the GROUP BY clause to filter the grouped records.
+*/
+
+--SELECT Product, MAX(Quantity) AS "Maximum Quantity"   
+--FROM ProductQty  
+--GROUP BY Product  
+--HAVING MAX(Quantity)>300;
+
+/*
+Example5: This example uses the MAX() function with two columns to get the highest resultant
+*/
+
+--SELECT Product, MAX(Quantity * Price) AS "Highest Value"   
+--FROM ProductQty  
+--GROUP BY Product;   
+
+
+
+----=====================================================================================---======================
+
+--CREATE TABLE EmployeeData (
+--    id INT PRIMARY KEY,
+--    name VARCHAR(100) NOT NULL,
+--    gender VARCHAR(10) NOT NULL,
+--    salary INT NOT NULL,
+--    city VARCHAR(100) NOT NULL
+--);
+
+
+--INSERT INTO EmployeeData (id, name, gender, salary, city)
+--VALUES
+--(1, 'John', 'Male', 50000, 'New York'),
+--(2, 'Emma', 'Female', 60000, 'Los Angeles'),
+--(3, 'Michael', 'Male', 55000, 'Chicago'),
+--(4, 'Sophia', 'Female', 52000, 'Houston'),
+--(5, 'William', 'Male', 48000, 'Phoenix'),
+--(6, 'Olivia', 'Female', 53000, 'Philadelphia'),
+--(7, 'James', 'Male', 51000, 'San Antonio');
+
+--SELECT * FROM EmployeeData;
+
+--SELECT SUM(Salary) AS "Total Salary" FROM EmployeeData;
+
+--SELECT MAX(Salary) AS "MaxSalary" FROM EmployeeData;
+
+--SELECT MIN(Salary) AS "MinSalary" FROM EmployeeData;
+
+--SELECT AVG(Salary) AS "AVERAGESalary" FROM EmployeeData;
+
+--SELECT COUNT(Salary) AS "Total Salary" FROM EmployeeData;
+
+--drop Table EmployeeData;
+
+
+---======================================================================================
+--CREATE TABLE EmployeeData (
+--    id INT PRIMARY KEY,
+--    name VARCHAR(100) NOT NULL,
+--    gender VARCHAR(10) NOT NULL,
+--    salary INT NOT NULL,
+--    city VARCHAR(100) NOT NULL,
+--    dept_id INT NOT NULL
+--);
+
+--INSERT INTO EmployeeData (id, name, gender, salary, city, dept_id)
+--VALUES
+--(1, 'John', 'Male', 50000, 'New York', 101),
+--(2, 'Emma', 'Female', 60000, 'Los Angeles', 102),
+--(3, 'Michael', 'Male', 55000, 'Chicago', 103),
+--(4, 'Sophia', 'Female', 52000, 'Houston', 101),
+--(5, 'William', 'Male', 48000, 'Phoenix', 104),
+--(6, 'Olivia', 'Female', 53000, 'Philadelphia', 102),
+--(7, 'James', 'Male', 51000, 'San Antonio', 103),
+--(8, 'Emily', 'Female', 55000, 'Houston', 101),
+--(9, 'David', 'Male', 49000, 'Houston', 104),
+--(10, 'Sophie', 'Female', 52000, 'Houston', 102);
+
+
+--SELECT * FROM EmployeeData;
+
+--SELECT City,SUM(Salary) as "TOTAL SALARY ACCORDING TO CITY" FROM EmployeeData GROUP BY City;
+
+--YOU CAN ONLY SELECT THOES COLUMN WHICH YOU HAVE SECLECTED IN SELECT STATMENT
+--SELECT gender,City,SUM(Salary) as "TOTAL SALARY ACCORDING TO CITY" FROM EmployeeData GROUP BY gender,City;
